@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Vision System - Real-time Detection & Tracking</title>
+    <meta name="description"
+        content="Real-time face detection, tracking, and distance estimation powered by YOLOv8 and AI">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<div class="stat-item">
+    <span class="stat-label">Faces</span>
+    <span class="stat-value" id="face-count">0</span>
+</div>
+</div>
+</div>
+</header>
+
+<!-- Main Content -->
+<main class="main-content">
+    <!-- Video Display -->
+    <div class="video-container">
+        <canvas id="video-canvas"></canvas>
+        <div class="video-overlay" id="video-overlay">
+            <div class="overlay-message">
+                <div class="spinner"></div>
+                <p>Select a camera to start</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Control Panel -->
+    <aside class="control-panel">
+        <div class="panel-section">
+            <h3 class="section-title">Camera Control</h3>
+
+            <div class="form-group">
+                <label for="camera-select">Camera</label>
+                <select id="camera-select" class="select-input">
+                    <option value="">Loading cameras...</option>
+                </select>
+            </div>
+
+            <div class="button-group">
+                <button id="start-btn" class="btn btn-primary" disabled>
+                    <span class="btn-icon">▶️</span>
+                    Start
+                </button>
+                <button id="stop-btn" class="btn btn-secondary" disabled>
+                    <span class="btn-icon">⏸️</span>
+                    Stop
+                </button>
+            </div>
+        </div>
+
+        <div class="panel-section">
+            <h3 class="section-title">Detection Settings</h3>
+
+            <div class="form-group">
+                <label for="confidence-slider">
+                    Confidence Threshold
+                    <span class="slider-value" id="confidence-value">0.50</span>
+                </label>
+                <input type="range" id="confidence-slider" class="slider" min="0" max="1" step="0.05" value="0.5">
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="show-landmarks" checked>
+                    Show Landmarks
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="show-distance" checked>
+                    Show Distance
+                </label>
+            </div>
+        </div>
+
+        <div class="panel-section">
+            <h3 class="section-title">System Info</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">Status</span>
+                    <span class="info-value" id="status-display">Idle</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Frames</span>
+                    <span class="info-value" id="frame-count">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-section">
+            <button id="settings-btn" class="btn btn-outline">
+                <span class="btn-icon">⚙️</span>
+                Advanced Settings
+            </button>
+        </div>
+    </aside>
+</main>
+</div>
+
+<!-- Settings Modal -->
+<div class="modal" id="settings-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Advanced Settings</h2>
+            <button class="modal-close" id="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="distance-method">Distance Estimation Method</label>
+                <select id="distance-method" class="select-input">
+                    <option value="facial_width">Facial Width</option>
+                    <option value="pose_estimation">3D Pose Estimation</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="face-width">Average Face Width (cm)</label>
+                <input type="number" id="face-width" class="text-input" value="14.5" min="10" max="20" step="0.1">
+            </div>
+
+            <div class="form-group">
+                <label for="max-faces">Max Faces to Track</label>
+                <input type="number" id="max-faces" class="text-input" value="10" min="1" max="50">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" id="modal-cancel">Cancel</button>
+            <button class="btn btn-primary" id="modal-save">Save Changes</button>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="/js/api-client.js"></script>
+<script src="/js/websocket-client.js"></script>
+<script src="/js/renderer.js"></script>
+<script src="/js/controls.js"></script>
+<script src="/js/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+# Face Detection Vision System Configuration
+
+# Detection Settings
+detection:
+  model_path: "models/yolov8n-face.pt"
+  confidence_threshold: 0.5
+  iou_threshold: 0.45
+  device: "cpu"  # Options: cuda, cpu, mps
+  
+# Landmark Detection
+landmarks:
+  enabled: true
+  model_complexity: 1  # MediaPipe: 0, 1, or 2
+  min_detection_confidence: 0.5
+  min_tracking_confidence: 0.5
+
+# Tracking Settings
+tracking:
+  max_disappeared: 30  # Frames before removing track
+  max_distance: 50  # Max pixel distance for track association
+  kalman:
+    process_noise: 0.01
+    measurement_noise: 0.1
+    
+# Distance Estimation
+distance:
+  method: "facial_width"  # Options: facial_width, pose_estimation
+  average_face_width_cm: 14.5
+  use_calibration: true
+  calibration_file: "config/camera_calibration.yaml"
+
+# Camera Settings
+camera:
+  default_id: 0
+  width: 640
+  height: 480
+  fps: 30
+  backend: "auto"  # Options: auto, dshow, v4l2, avfoundation
+
+# Performance
+performance:
+  enable_gpu: true
+  batch_size: 1
+  num_threads: 4
+  
+# Visualization
+visualization:
+  show_bbox: true
+  show_landmarks: true
+  show_distance: true
+  show_track_id: true
+  show_fps: true
+  bbox_color: [0, 255, 0]  # BGR
+  landmark_color: [255, 0, 0]  # BGR
+  text_color: [255, 255, 255]  # BGR
+  thickness: 2
+  font_scale: 0.6
+
+# API Settings
+api:
+  host: "0.0.0.0"
+  port: 8000
+  cors_origins: ["*"]
+  max_upload_size_mb: 50
+  websocket_fps: 30

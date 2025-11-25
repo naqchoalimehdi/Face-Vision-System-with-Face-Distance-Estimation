@@ -2,7 +2,6 @@
 
 A high-performance, real-time face detection, tracking, and distance estimation system powered by YOLOv8 and MediaPipe.
 
-![Face Vision System](https://raw.githubusercontent.com/ultralytics/assets/main/yolov8/banner-yolov8.png)
 
 ## Features
 

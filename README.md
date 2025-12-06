@@ -1,4 +1,4 @@
-![yolo depth estimation in action](snip.jpeg)
+![yolo depth estimation in action](snip.png)
 
 
 # Face Vision System

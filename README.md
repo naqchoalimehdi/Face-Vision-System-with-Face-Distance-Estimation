@@ -1,10 +1,8 @@
-# Face Vision System
-
-A high-performance, real-time face detection, tracking, and distance estimation system powered by YOLOv8 and MediaPipe.
 ![yolo depth estimation in action](snip.jpeg)
 
 
-
+# Face Vision System
+A high-performance, real-time face detection, tracking, and distance estimation system powered by YOLOv8 and MediaPipe.
 ## Features
 
 - **Real-time Face Detection**: Uses YOLOv8 for fast and accurate face detection.
